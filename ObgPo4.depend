@@ -1,0 +1,95 @@
+# depslib dependency file v1.0
+1795021041 source:c:\users\santi\desktop\obgpo4\main.cpp
+	<iostream>
+
+1795022168 source:c:\users\santi\desktop\obgpo4\string.cpp
+	"string.h"
+
+1795022344 c:\users\santi\desktop\obgpo4\string.h
+	<string.h>
+
+1795022447 source:c:\users\santi\desktop\obgpo4\fecha.cpp
+	"Fecha.h"
+
+1795022428 c:\users\santi\desktop\obgpo4\fecha.h
+
+1795027667 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\fecha.cpp
+	"Fecha.h"
+
+1795022428 c:\users\facun\downloads\taller\obgpo4\obgpo4\fecha.h
+
+1795028711 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\main.cpp
+	"Fachada.h"
+	"Novela.h"
+	"Texto.h"
+	"Escolar.h"
+	<iostream>
+
+1795023704 c:\users\facun\downloads\taller\obgpo4\obgpo4\fachada.h
+	"DiccionarioAutores.h"
+	"DiccionarioLibros.h"
+	"TipoError.h"
+
+1795023704 c:\users\facun\downloads\taller\obgpo4\obgpo4\diccionarioautores.h
+	"Autor.h"
+	"Iterador.h"
+
+1795023704 c:\users\facun\downloads\taller\obgpo4\obgpo4\autor.h
+	"String.h"
+	"Objeto.h"
+
+1795028711 c:\users\facun\downloads\taller\obgpo4\obgpo4\string.h
+	<string.h>
+
+1795024981 c:\users\facun\downloads\taller\obgpo4\obgpo4\objeto.h
+	"TipoObjeto.h"
+
+1795017407 c:\users\facun\downloads\taller\obgpo4\obgpo4\tipoobjeto.h
+
+1795023704 c:\users\facun\downloads\taller\obgpo4\obgpo4\iterador.h
+	"Objeto.h"
+	"LPPF.h"
+
+1795019690 c:\users\facun\downloads\taller\obgpo4\obgpo4\lppf.h
+	"Objeto.h"
+
+1795023704 c:\users\facun\downloads\taller\obgpo4\obgpo4\diccionariolibros.h
+	"Libro.h"
+	"Iterador.h"
+
+1795025043 c:\users\facun\downloads\taller\obgpo4\obgpo4\libro.h
+	"TipoLibro.h"
+	"Objeto.h"
+	"String.h"
+
+1794958432 c:\users\facun\downloads\taller\obgpo4\obgpo4\tipolibro.h
+
+1794961879 c:\users\facun\downloads\taller\obgpo4\obgpo4\tipoerror.h
+
+1795028711 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\string.cpp
+	"string.h"
+	<iostream>
+
+1795024981 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\libro.cpp
+	"Libro.h"
+
+1795027527 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\novela.cpp
+	"Novela.h"
+
+1795026231 c:\users\facun\downloads\taller\obgpo4\obgpo4\novela.h
+	"Libro.h"
+	"Autor.h"
+
+1795027668 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\texto.cpp
+	"Texto.h"
+
+1795023404 c:\users\facun\downloads\taller\obgpo4\obgpo4\texto.h
+	"Libro.h"
+	"Fecha.h"
+
+1795028322 source:c:\users\facun\downloads\taller\obgpo4\obgpo4\escolar.cpp
+	"Escolar.h"
+
+1795028243 c:\users\facun\downloads\taller\obgpo4\obgpo4\escolar.h
+	"Texto.h"
+
