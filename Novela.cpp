@@ -2,9 +2,8 @@
 
 
 //CONSTRUCTOR
-Novela :: Novela(long int i, String t, String e, float p, int u, String g) : Libro(i, t, e, p, u){
-    genero = g;
-    autor = NULL;
+Novela :: Novela(long int i, String t, String e, float p, int u, String g) : Libro(i, t, e, p, u), genero(g){
+    autor = nullptr;
 }
 
 //GETTERS Y SET
@@ -34,6 +33,7 @@ TipoLibro Novela :: obtenerTipo(){
     return NOVELA;
 }
 
+//DESTRUCTOR
 Novela :: ~Novela(){
 
 }

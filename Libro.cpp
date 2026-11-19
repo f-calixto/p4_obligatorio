@@ -1,10 +1,8 @@
 #include "Libro.h"
 
  //CONSTRUCTOR
-Libro :: Libro(long int i, String t, String e, float p, int u){
+Libro :: Libro(long int i, String t, String e, float p, int u):titulo(t), editorial(e){
     isbn = i;
-    titulo = t;
-    editorial = e;
     precioBase = p;
     unidadesVendidas = u;
 }

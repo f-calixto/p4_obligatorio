@@ -1,9 +1,8 @@
 #include "Texto.h"
 
 //CONSTRUCTOR
-Texto :: Texto(long int i, String t, String e, float p, int u, String m, Fecha f) : Libro(i, t, e, p, u){
+Texto :: Texto(long int i, String t, String e, float p, int u, String m, Fecha f) : Libro(i, t, e, p, u), fechaPublicado(f){
     materia = m;
-    fechaPublicado = f;
 }
 
 //GETTERS

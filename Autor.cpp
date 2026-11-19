@@ -1,10 +1,8 @@
 #include "Autor.h"
 
 //CONSTRUCTOR
-Autor::Autor(long int c, String n, String a) {
+Autor::Autor(long int c, String n, String a): nombre(n), apellido(a){
     cedula = c;
-    nombre = n;
-    apellido = a;
 }
 
 //GETTERS
@@ -25,5 +23,6 @@ TipoObjeto Autor::obtenerTipoObjeto() {
     return AUTOR;
 }
 
+//DESTRUCTOR
 Autor::~Autor(){
 }
