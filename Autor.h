@@ -18,6 +18,8 @@ class Autor : public Objeto {
     long int getCedula();
     String getNombre();
     String getApellido();
+
+    //METODOS
     TipoObjeto obtenerTipoObjeto() override;
 
     // DESTRUCTOR
