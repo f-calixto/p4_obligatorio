@@ -3,23 +3,24 @@
 
 #include "Texto.h"
 
-class Escolar: public Texto{
-    private:
-        int anioEscuela;
+class Escolar : public Texto {
+   private:
+    int anioEscuela;
 
-    public:
-        //CONSTRUCTOR
-        Escolar(long int i, String t, String e, float p, int u, String m, Fecha f, int a);
+   public:
+    // CONSTRUCTOR
+    Escolar(long int i, String t, String e, float p, int u, String m, Fecha f,
+            int a);
 
-        //GETTERS
-        int getAnioEscuela();
-        float calcularPrecioVenta();
+    // GETTERS
+    int getAnioEscuela();
+    float calcularPrecioVenta() override;
 
-        //METODOS
-        TipoLibro obtenerTipo();
+    // METODOS
+    TipoLibro obtenerTipo() override;
 
-        //DESTRUCTOR
-        ~Escolar();
+    // DESTRUCTOR
+    ~Escolar();
 };
 
-#endif // ESCOLAR_H
+#endif  // ESCOLAR_H
