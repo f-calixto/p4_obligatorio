@@ -177,3 +177,100 @@
 
 1795055502 c:\users\facun\downloads\taller\p4_obligatorio\p4_obligatorio\tipoerror.h
 
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\escolar.cpp
+	"Escolar.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\escolar.h
+	"Texto.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\texto.h
+	"Fecha.h"
+	"Libro.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\fecha.h
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\libro.h
+	<iostream>
+	"TipoLibro.h"
+	"Objeto.h"
+	"String.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\tipolibro.h
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\objeto.h
+	"TipoObjeto.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\tipoobjeto.h
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\string.h
+	<string.h>
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\fecha.cpp
+	"Fecha.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\libro.cpp
+	"Libro.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\main.cpp
+	"Fachada.h"
+	"Novela.h"
+	"Texto.h"
+	"Escolar.h"
+	"Autor.h"
+	<iostream>
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\fachada.h
+	"DiccionarioAutores.h"
+	"DiccionarioLibros.h"
+	"TipoError.h"
+
+1795203946 c:\users\marap\downloads\facu\p4_obligatorio\diccionarioautores.h
+	"Autor.h"
+	"Iterador.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\autor.h
+	"Objeto.h"
+	"String.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\iterador.h
+	"Objeto.h"
+	"LPPF.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\lppf.h
+	"Objeto.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\diccionariolibros.h
+	"Libro.h"
+	"Iterador.h"
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\tipoerror.h
+
+1795203299 c:\users\marap\downloads\facu\p4_obligatorio\novela.h
+	"Autor.h"
+	"Libro.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\novela.cpp
+	"Novela.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\string.cpp
+	"string.h"
+	<iostream>
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\texto.cpp
+	"Texto.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\autor.cpp
+	"Autor.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\diccionariolibros.cpp
+	"DiccionarioLibros.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\iterador.cpp
+	"Iterador.h"
+
+1795203299 source:c:\users\marap\downloads\facu\p4_obligatorio\lppf.cpp
+	"LPPF.h"
+
+1795204768 source:c:\users\marap\downloads\facu\p4_obligatorio\diccionarioautores.cpp
+	"DiccionarioAutores.h"
+

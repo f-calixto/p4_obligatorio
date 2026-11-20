@@ -17,6 +17,20 @@ class DiccionarioAutores{
 
         Nodo* raiz;
 
+        //OPERACIONES AUXILIARES AVL
+        void RotacionSimpleIzquierda(Nodo* &a);
+        void RotacionSimpleDerecha(Nodo* &a);
+        void RotacionDobleIzquierda(Nodo* &a);
+        void RotacionDobleDerecha(Nodo* &a);
+
+        void Balancear(Nodo* &a);
+        void Insertar(Nodo* &a, Autor* autor);
+
+        Autor* Buscar(Nodo* a, long int cedula);
+        void RecorrerEnOrden(Nodo* a, Iterador &iter);
+        void Destruir(Nodo* a);
+
+
     public:
         //CONSTRUCTOR
         DiccionarioAutores();
