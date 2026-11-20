@@ -81,3 +81,7 @@ void String::aMinuscula()
 void  String :: print(){
     cout << cadena;
 }
+
+bool String::comienzaCon(String &frase){
+    return (strncmp(cadena, frase.cadena, strlen(frase.cadena)) == 0);
+}

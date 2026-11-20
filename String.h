@@ -34,6 +34,7 @@ class String{
         bool mismoLargo(String);      // Compara el largo del objeto implícito con  el del string recibido por parámetro
         void aMinuscula();            // Transforma un String a letra minúscula, esto sirve para comparaciones
         void print();                 //Muesta un string en pantalla
+        bool comienzaCon(String &frase); //devuelve true si ambos string coinciden en los primeros n caracteres
 
 };
 

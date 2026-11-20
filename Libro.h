@@ -1,9 +1,11 @@
 #ifndef LIBRO_H
 #define LIBRO_H
 
+#include <iostream>
 #include "TipoLibro.h"
 #include "Objeto.h"
 #include "String.h"
+using namespace std;
 
 class Libro: public Objeto{
     private:
@@ -22,17 +24,19 @@ class Libro: public Objeto{
         String getTitulo();
         String getEditorial();
         float getPrecioBase();
+        int getUnidadesVendidas();
 
         //METODOS
         void registrarVenta();
         TipoObjeto obtenerTipoObjeto();
+        void mostrarLibroBasico();
 
         //VIRTUALES
         virtual float calcularPrecioVenta() = 0;
         virtual TipoLibro obtenerTipo() = 0;
 
         //DESTRUCTOR
-        ~Libro();
+        virtual ~Libro();
 
 };
 #endif // LIBRO_H

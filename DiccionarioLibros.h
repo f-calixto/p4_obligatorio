@@ -32,12 +32,10 @@ class DiccionarioLibros{
         void buscarPorFrase(String frase, Iterador &iter);
         float calcularRecaudacion(String editorial);
         void calcularUnidadesVendidas(float precio, int &novelas, int &textos, int &escolares);
-        void libroMasVendidoEditorial(String editorial, Libro* &libro);
+        Libro* libroMasVendidoEditorial(String editorial);
 
         //DESTRUCTOR
         ~DiccionarioLibros();
-
-
 
 };
 #endif // DICCIONARIOLIBROS_H

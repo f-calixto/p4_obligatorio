@@ -25,6 +25,10 @@ float Libro :: getPrecioBase(){
     return precioBase;
 }
 
+int Libro::getUnidadesVendidas(){
+    return unidadesVendidas;
+}
+
 //METODOS
 void Libro :: registrarVenta(){
     unidadesVendidas++;
@@ -32,6 +36,27 @@ void Libro :: registrarVenta(){
 
 TipoObjeto Libro :: obtenerTipoObjeto(){
     return LIBRO;
+}
+
+void Libro::mostrarLibroBasico(){
+    cout << isbn << " - ";
+    titulo.print();
+    cout << " - ";
+
+    switch(obtenerTipo()){
+        case NOVELA:
+            cout << "NOVELA";
+            break;
+
+        case TEXTO:
+            cout << "TEXTO";
+            break;
+
+        case ESCOLAR:
+            cout << "ESCOLAR";
+            break;
+    }
+    cout << endl;
 }
 
 //DESTRUCTOR
