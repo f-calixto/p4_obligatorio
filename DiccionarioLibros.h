@@ -4,7 +4,10 @@
 #include "Iterador.h"
 #include "Libro.h"
 
-const int B = 500;
+// Habran aproximadamente 500 libros. Se eligen un numero primo para aprovechar
+// todos los digitos del isbn y distribuir mejor en las cubetas desde un
+// principio
+const int B = 701;
 
 class DiccionarioLibros {
    private:
