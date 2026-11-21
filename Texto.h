@@ -11,7 +11,7 @@ class Texto : public Libro {
 
    public:
     // CONSTRUCTOR
-    Texto(long int i, String t, String e, float p, int u, String m, Fecha f);
+    Texto(long int i, String t, String e, float p, String m, Fecha f);
 
     // GETTERS
     String getMaterial();

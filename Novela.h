@@ -11,7 +11,7 @@ class Novela : public Libro {
 
    public:
     // CONSTRUCTOR
-    Novela(long int i, String t, String e, float p, int u, String g);
+    Novela(long int i, String t, String e, float p, String g);
 
     // GETTERS Y SET
     Autor* getAutor();

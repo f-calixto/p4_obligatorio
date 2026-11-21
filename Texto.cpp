@@ -1,34 +1,27 @@
 #include "Texto.h"
 
-//CONSTRUCTOR
-Texto :: Texto(long int i, String t, String e, float p, int u, String m, Fecha f) : Libro(i, t, e, p, u), fechaPublicado(f){
+// CONSTRUCTOR
+Texto::Texto(long int i, String t, String e, float p, String m, Fecha f)
+    : Libro(i, t, e, p), fechaPublicado(f) {
     materia = m;
 }
 
-//GETTERS
-String Texto :: getMaterial(){
-    return materia;
-}
+// GETTERS
+String Texto::getMaterial() { return materia; }
 
-Fecha Texto :: getFechaPublicado(){
-    return fechaPublicado;
-}
+Fecha Texto::getFechaPublicado() { return fechaPublicado; }
 
-//METODOS
-float Texto :: calcularPrecioVenta(){
+// METODOS
+float Texto::calcularPrecioVenta() {
     Fecha limite(1, 1, 2026);
 
-    if(fechaPublicado < limite)
+    if (fechaPublicado < limite)
         return getPrecioBase() * 0.75;
     else
         return getPrecioBase();
 }
 
-TipoLibro Texto :: obtenerTipo(){
-    return TEXTO;
-}
+TipoLibro Texto::obtenerTipo() { return TEXTO; }
 
-//DESTRUCTOR
-Texto :: ~Texto(){
-
-}
+// DESTRUCTOR
+Texto::~Texto() {}

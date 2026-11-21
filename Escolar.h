@@ -9,8 +9,7 @@ class Escolar : public Texto {
 
    public:
     // CONSTRUCTOR
-    Escolar(long int i, String t, String e, float p, int u, String m, Fecha f,
-            int a);
+    Escolar(long int i, String t, String e, float p, String m, Fecha f, int a);
 
     // GETTERS
     int getAnioEscuela();

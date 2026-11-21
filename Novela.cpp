@@ -1,26 +1,20 @@
 #include "Novela.h"
 
-
-//CONSTRUCTOR
-Novela :: Novela(long int i, String t, String e, float p, int u, String g) : Libro(i, t, e, p, u), genero(g){
+// CONSTRUCTOR
+Novela::Novela(long int i, String t, String e, float p, String g)
+    : Libro(i, t, e, p), genero(g) {
     autor = nullptr;
 }
 
-//GETTERS Y SET
-Autor* Novela :: getAutor(){
-    return autor;
-}
+// GETTERS Y SET
+Autor* Novela::getAutor() { return autor; }
 
-String Novela :: getGenero(){
-    return genero;
-}
+String Novela::getGenero() { return genero; }
 
-void Novela :: setAutor(Autor * a){
-    autor = a;
-}
+void Novela::setAutor(Autor* a) { autor = a; }
 
-//METODOS
-float Novela :: calcularPrecioVenta(){
+// METODOS
+float Novela::calcularPrecioVenta() {
     String aux = genero;
     aux.aMinuscula();
     if (aux == "infantil")
@@ -29,11 +23,7 @@ float Novela :: calcularPrecioVenta(){
         return getPrecioBase();
 }
 
-TipoLibro Novela :: obtenerTipo(){
-    return NOVELA;
-}
+TipoLibro Novela::obtenerTipo() { return NOVELA; }
 
-//DESTRUCTOR
-Novela :: ~Novela(){
-
-}
+// DESTRUCTOR
+Novela::~Novela() {}

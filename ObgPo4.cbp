@@ -51,6 +51,7 @@
 		<Unit filename="String.h" />
 		<Unit filename="Texto.cpp" />
 		<Unit filename="Texto.h" />
+		<Unit filename="TipoError.cpp" />
 		<Unit filename="TipoError.h" />
 		<Unit filename="TipoLibro.h" />
 		<Unit filename="TipoObjeto.h" />

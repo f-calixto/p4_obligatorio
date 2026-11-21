@@ -1,10 +1,16 @@
-#include "string.h"
+#include "String.h"
 #include <iostream>
 using namespace std;
 
 String :: String(){
     cadena = new char[1];
     cadena[0] = '\0';
+}
+
+String :: String (const char * cad){
+    int largo = strlen(cad);
+    cadena = new char[largo + 1];
+    strcpy(cadena, cad);
 }
 
 String :: String (char * cad){

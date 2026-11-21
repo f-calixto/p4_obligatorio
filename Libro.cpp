@@ -1,49 +1,35 @@
 #include "Libro.h"
 
- //CONSTRUCTOR
-Libro :: Libro(long int i, String t, String e, float p, int u):titulo(t), editorial(e){
+// CONSTRUCTOR
+Libro::Libro(long int i, String t, String e, float p)
+    : titulo(t), editorial(e) {
     isbn = i;
     precioBase = p;
-    unidadesVendidas = u;
+    unidadesVendidas = 0;
 }
 
+// GETTERS
+long int Libro::getIsbn() { return isbn; }
 
-//GETTERS
-long int Libro :: getIsbn(){
-    return isbn;
-}
+String Libro::getTitulo() { return titulo; }
 
-String Libro :: getTitulo(){
-    return titulo;
-}
+String Libro::getEditorial() { return editorial; }
 
-String Libro :: getEditorial(){
-    return editorial;
-}
+float Libro::getPrecioBase() { return precioBase; }
 
-float Libro :: getPrecioBase(){
-    return precioBase;
-}
+int Libro::getUnidadesVendidas() { return unidadesVendidas; }
 
-int Libro::getUnidadesVendidas(){
-    return unidadesVendidas;
-}
+// METODOS
+void Libro::registrarVenta() { unidadesVendidas++; }
 
-//METODOS
-void Libro :: registrarVenta(){
-    unidadesVendidas++;
-}
+TipoObjeto Libro::obtenerTipoObjeto() { return LIBRO; }
 
-TipoObjeto Libro :: obtenerTipoObjeto(){
-    return LIBRO;
-}
-
-void Libro::mostrarLibroBasico(){
+void Libro::mostrarLibroBasico() {
     cout << isbn << " - ";
     titulo.print();
     cout << " - ";
 
-    switch(obtenerTipo()){
+    switch (obtenerTipo()) {
         case NOVELA:
             cout << "NOVELA";
             break;
@@ -59,6 +45,5 @@ void Libro::mostrarLibroBasico(){
     cout << endl;
 }
 
-//DESTRUCTOR
-Libro :: ~Libro(){
-}
+// DESTRUCTOR
+Libro::~Libro() {}

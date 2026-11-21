@@ -2,6 +2,7 @@
 *.d
 
 obj/
+main
 
 # Compiled Object files
 *.slo

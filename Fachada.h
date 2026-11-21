@@ -21,7 +21,7 @@ class Fachada{
         void listarPorFrase (String frase, TipoError &error, Iterador &iter);
         void listarLibro(long int isbn, TipoError &error, Libro* &libro);
         void listarAutores(TipoError &error, Iterador &iter);
-        void registrarVenta(long int isbn, TipoError &error);
+        float registrarVenta(long int isbn, TipoError &error);
         float recaudacionEditorial(String editorial);
         void unidadesVendidasPorTipo(float precio, int &novelas, int &textos, int &escolares);
         void listarMasVendidoEditorial(String editorial, TipoError &error, Libro* &libro);

@@ -2,41 +2,41 @@
 #define LIBRO_H
 
 #include <iostream>
-#include "TipoLibro.h"
+
 #include "Objeto.h"
 #include "String.h"
+#include "TipoLibro.h"
 using namespace std;
 
-class Libro: public Objeto{
-    private:
-        long int isbn;
-        String titulo;
-        String editorial;
-        float precioBase;
-        int unidadesVendidas;
+class Libro : public Objeto {
+   private:
+    long int isbn;
+    String titulo;
+    String editorial;
+    float precioBase;
+    int unidadesVendidas;
 
-    public:
-        //CONSTRUCTOR
-        Libro(long int i, String t, String e, float p, int u);
+   public:
+    // CONSTRUCTOR
+    Libro(long int i, String t, String e, float p);
 
-        //GETTERS
-        long int getIsbn();
-        String getTitulo();
-        String getEditorial();
-        float getPrecioBase();
-        int getUnidadesVendidas();
+    // GETTERS
+    long int getIsbn();
+    String getTitulo();
+    String getEditorial();
+    float getPrecioBase();
+    int getUnidadesVendidas();
 
-        //METODOS
-        void registrarVenta();
-        TipoObjeto obtenerTipoObjeto();
-        void mostrarLibroBasico();
+    // METODOS
+    void registrarVenta();
+    TipoObjeto obtenerTipoObjeto();
+    void mostrarLibroBasico();
 
-        //VIRTUALES
-        virtual float calcularPrecioVenta() = 0;
-        virtual TipoLibro obtenerTipo() = 0;
+    // VIRTUALES
+    virtual float calcularPrecioVenta() = 0;
+    virtual TipoLibro obtenerTipo() = 0;
 
-        //DESTRUCTOR
-        virtual ~Libro();
-
+    // DESTRUCTOR
+    virtual ~Libro();
 };
-#endif // LIBRO_H
+#endif  // LIBRO_H
