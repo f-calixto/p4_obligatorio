@@ -1,48 +1,42 @@
 #include "TipoError.h"
-#include "String.h"
+
+#include <iostream>
+using namespace std;
 
 void ImprimirMensaje(TipoError error) {
     switch (error) {
         case ERRORNULO:
             break;
         case AUTORREGISTRADO: {
-            String mensaje("El autor ya esta registrado.");
-            mensaje.print();
+            cout << "El autor ya esta registrado.";
             break;
         }
         case LIBROREGISTRADO: {
-            String mensaje("El libro ya esta registrado.");
-            mensaje.print();
+            cout << "El libro ya esta registrado.";
             break;
         }
         case LIBRONOEXISTE: {
-            String mensaje("El libro no existe.");
-            mensaje.print();
+            cout << "El libro no existe.";
             break;
         }
         case AUTORNOEXISTE: {
-            String mensaje("El autor no existe.");
-            mensaje.print();
+            cout << "El autor no existe.";
             break;
         }
         case NOESNOVELA: {
-            String mensaje("El libro no es una novela.");
-            mensaje.print();
+            cout << "El libro no es una novela.";
             break;
         }
         case LIBROSFRASE: {
-            String mensaje("No hay libros que coincidan con la frase.");
-            mensaje.print();
+            cout << "No hay libros que coincidan con la frase.";
             break;
         }
         case AUTORESVACIO: {
-            String mensaje("No hay autores registrados.");
-            mensaje.print();
+            cout << "No hay autores registrados.";
             break;
         }
         case EDITORIALSINLIBROS: {
-            String mensaje("No hay libros de esa editorial.");
-            mensaje.print();
+            cout << "No hay libros de esa editorial.";
             break;
         }
     }
