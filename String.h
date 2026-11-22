@@ -36,7 +36,8 @@ class String {
                               // del string recibido por par�metro
     void aMinuscula();  // Transforma un String a letra min�scula, esto sirve
                         // para comparaciones
-    void print();       // Muesta un string en pantalla
+    void print();       // Muestra un string en pantalla
+    void scan();   //Carga un string
     bool comienzaCon(String& frase);  // devuelve true si ambos string coinciden
                                       // en los primeros n caracteres
 };

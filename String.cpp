@@ -88,6 +88,19 @@ void  String :: print(){
     cout << cadena;
 }
 
+void String::scan() {
+    char aux[256];
+
+    cin >> ws;
+    cin.getline(aux, 256);
+
+    delete [] cadena;
+
+    int largo = strlen(aux);
+    cadena = new char[largo + 1];
+    strcpy(cadena, aux);
+}
+
 bool String::comienzaCon(String &frase){
     return (strncmp(cadena, frase.cadena, strlen(frase.cadena)) == 0);
 }

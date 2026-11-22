@@ -9,10 +9,8 @@ void Fachada::registrarAutor(Autor* autor, TipoError& error) {
 
     if (autores.Member(autor->getCedula())) {
         error = AUTORREGISTRADO;
-        return;
-    }
-
-    autores.Insert(autor);
+    } else
+        autores.Insert(autor);
 }
 
 void Fachada::registrarLibro(Libro* libro, TipoError& error) {
@@ -20,10 +18,8 @@ void Fachada::registrarLibro(Libro* libro, TipoError& error) {
 
     if (libros.Member(libro->getIsbn())) {
         error = LIBROREGISTRADO;
-        return;
-    }
-
-    libros.Insert(libro);
+    } else
+        libros.Insert(libro);
 }
 
 void Fachada::asociarAutorNovela(long int ci, long int isbn, TipoError& error) {
@@ -31,29 +27,25 @@ void Fachada::asociarAutorNovela(long int ci, long int isbn, TipoError& error) {
 
     if (!libros.Member(isbn)) {
         error = LIBRONOEXISTE;
-        return;
+    } else{
+        Autor* autor = autores.Find(ci);
+        if (autor == nullptr) {
+            error = AUTORNOEXISTE;
+        } else{
+            Libro* libro = libros.Find(isbn);
+            if (libro->obtenerTipo() != NOVELA) {
+                error = NOESNOVELA;
+            } else{
+                Novela* novela = (Novela*)libro;
+                novela->setAutor(autor);
+            }
+        }
     }
-
-    Autor* autor = autores.Find(ci);
-    if (autor == nullptr) {
-        error = AUTORNOEXISTE;
-        return;
-    }
-
-    Libro* libro = libros.Find(isbn);
-    if (libro->obtenerTipo() != NOVELA) {
-        error = NOESNOVELA;
-        return;
-    }
-
-    Novela* novela = (Novela*)libro;
-    novela->setAutor(autor);
 }
 
 void Fachada::listarPorFrase(String frase, TipoError& error, Iterador& iter) {
     error = ERRORNULO;
     libros.buscarPorFrase(frase, iter);
-
     if (!iter.hayMasObjetos()) {
         error = LIBROSFRASE;
     }
@@ -62,13 +54,11 @@ void Fachada::listarPorFrase(String frase, TipoError& error, Iterador& iter) {
 void Fachada::listarLibro(long int isbn, TipoError& error, Libro*& libro) {
     error = ERRORNULO;
     libro = nullptr;
-
     if (!libros.Member(isbn)) {
         error = LIBRONOEXISTE;
-        return;
+    } else{
+        libro = libros.Find(isbn);
     }
-
-    libro = libros.Find(isbn);
 }
 
 void Fachada::listarAutores(TipoError& error, Iterador& iter) {
@@ -76,36 +66,31 @@ void Fachada::listarAutores(TipoError& error, Iterador& iter) {
 
     if (autores.estaVacio()) {
         error = AUTORESVACIO;
-        return;
+    } else{
+        autores.listarEnOrden(iter);
     }
-
-    autores.listarEnOrden(iter);
 }
 
-float Fachada::registrarVenta(long int isbn, TipoError& error) {
+void Fachada::registrarVenta(long int isbn, TipoError& error, float &venta) {
     error = ERRORNULO;
-
     if (!libros.Member(isbn)) {
         error = LIBRONOEXISTE;
-        return 0;
+    } else{
+        Libro* libro = libros.Find(isbn);
+        libro->registrarVenta();
+        venta = libro->calcularPrecioVenta();
     }
-
-    Libro* libro = libros.Find(isbn);
-    libro->registrarVenta();
-    return libro->calcularPrecioVenta();
 }
 
 float Fachada::recaudacionEditorial(String editorial) {
     return libros.calcularRecaudacion(editorial);
 }
 
-void Fachada::unidadesVendidasPorTipo(float precio, int& novelas, int& textos,
-                                      int& escolares) {
+void Fachada::unidadesVendidasPorTipo(float precio, int& novelas, int& textos, int& escolares) {
     libros.calcularUnidadesVendidas(precio, novelas, textos, escolares);
 }
 
-void Fachada::listarMasVendidoEditorial(String editorial, TipoError& error,
-                                        Libro*& libro) {
+void Fachada::listarMasVendidoEditorial(String editorial, TipoError& error, Libro*& libro) {
     error = ERRORNULO;
     libro = libros.libroMasVendidoEditorial(editorial);
 

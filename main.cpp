@@ -1,159 +1,11 @@
 #include <iostream>
-
+#include <cstdlib> // PARA SYSTEM CLS
 #include "Autor.h"
 #include "Escolar.h"
 #include "Fachada.h"
 #include "Novela.h"
 #include "Texto.h"
 using namespace std;
-
-/*
-Codigo de prueba anterior, conservado como referencia
-
-int main() {
-    // CREAR DICCIONARIOS
-    DiccionarioAutores autores;
-    DiccionarioLibros libros;
-
-    // ====================================
-    // PRUEBA DICCIONARIO AUTORES (AVL)
-    // ====================================
-
-    cout << "=== DICCIONARIO AUTORES ===" << endl;
-
-    cout << "Esta vacio: " << autores.estaVacio() << endl;
-
-    // INSERTAR AUTORES DESORDENADOS
-    autores.Insert(new Autor(44444444, "Juan", "Perez"));
-    autores.Insert(new Autor(22222222, "Maria", "Lopez"));
-    autores.Insert(new Autor(55555555, "Pedro", "Gomez"));
-    autores.Insert(new Autor(11111111, "Ana", "Silva"));
-    autores.Insert(new Autor(33333333, "Luis", "Rodriguez"));
-
-    // PROBAR MEMBER
-    cout << "\nExiste 22222222: " << autores.Member(22222222) << endl;
-
-    cout << "Existe 99999999: " << autores.Member(99999999) << endl;
-
-    // PROBAR FIND
-    Autor* encontrado = autores.Find(44444444);
-
-    if (encontrado != NULL) {
-        cout << "\nAutor encontrado: ";
-        encontrado->getNombre().print();
-        cout << endl;
-    }
-
-    // PROBAR LISTADO ORDENADO
-    Iterador iterAutores;
-    autores.listarEnOrden(iterAutores);
-
-    cout << "\nAutores ordenados por cedula:" << endl;
-
-    while (iterAutores.hayMasObjetos()) {
-        Objeto* obj = iterAutores.proximoObjeto();
-
-        if (obj->obtenerTipoObjeto() == AUTOR) {
-            Autor* a = (Autor*)obj;
-
-            cout << a->getCedula() << " - ";
-            a->getNombre().print();
-            cout << " ";
-            a->getApellido().print();
-            cout << endl;
-        }
-    }
-
-    // ====================================
-    // PRUEBA DICCIONARIO LIBROS (HASH)
-    // ====================================
-
-    cout << "\n=== DICCIONARIO LIBROS ===" << endl;
-
-    cout << "Esta vacio: " << libros.estaVacio() << endl;
-
-    // INSERTAR LIBROS
-    libros.Insert(
-        new Novela(101, "Cuentos Infantiles", "Planeta", 1000, "InFaNTIL"));
-
-    libros.Insert(new Novela(202, "La noche", "Planeta", 1000, "Terror"));
-
-    Fecha fecha1(15, 6, 2025);
-
-    libros.Insert(new Texto(303, "Historia de Uruguay", "Santillana", 1000,
-                            "Historia", fecha1));
-
-    Fecha fecha2(10, 3, 2025);
-
-    libros.Insert(new Escolar(404, "Ciencias Naturales", "Santillana", 1000,
-                              "Ciencias", fecha2, 2));
-
-    // PROBAR MEMBER
-    cout << "\nExiste ISBN 101: " << libros.Member(101) << endl;
-
-    cout << "Existe ISBN 999: " << libros.Member(999) << endl;
-
-    // PROBAR FIND
-    Libro* libro = libros.Find(101);
-
-    if (libro != NULL) {
-        cout << "\nLibro encontrado:" << endl;
-        cout << "ISBN: " << libro->getIsbn() << endl;
-
-        cout << "Titulo: ";
-        libro->getTitulo().print();
-
-        cout << "\nPrecio venta: " << libro->calcularPrecioVenta() << endl;
-    }
-
-    // PROBAR BUSQUEDA POR FRASE
-    Iterador iterLibros;
-    libros.buscarPorFrase("C", iterLibros);
-
-    cout << "\n\nLibros que comienzan con C:" << endl;
-
-    while (iterLibros.hayMasObjetos()) {
-        Objeto* obj = iterLibros.proximoObjeto();
-
-        if (obj->obtenerTipoObjeto() == LIBRO) {
-            Libro* l = (Libro*)obj;
-
-            cout << l->getIsbn() << " - ";
-            l->getTitulo().print();
-            cout << " - Tipo: " << l->obtenerTipo();
-            cout << endl;
-        }
-    }
-
-    // PROBAR RECAUDACION
-    cout << "\nRecaudacion Planeta: " << libros.calcularRecaudacion("Planeta")
-         << endl;
-
-    cout << "Recaudacion Santillana: "
-         << libros.calcularRecaudacion("Santillana") << endl;
-
-    // PROBAR UNIDADES VENDIDAS
-    int novelas = 0;
-    int textos = 0;
-    int escolares = 0;
-
-    libros.calcularUnidadesVendidas(900, novelas, textos, escolares);
-
-    cout << "\nUnidades vendidas (precio base > 900):" << endl;
-    cout << "Novelas: " << novelas << endl;
-    cout << "Textos: " << textos << endl;
-    cout << "Escolares: " << escolares << endl;
-
-    // PROBAR LIBRO MAS VENDIDO
-    Libro* masVendido = libros.libroMasVendidoEditorial("Planeta");
-
-    if (masVendido != NULL) {
-        cout << "\nLibro mas vendido de Planeta: ";
-        masVendido->getTitulo().print();
-        cout << endl;
-    }
-}
-*/
 
 void imprimirError(TipoError error) {
     if (error != ERRORNULO) {
@@ -241,37 +93,133 @@ void imprimirDetalleLibro(Libro* libro) {
 int main() {
     Fachada fachada;
     TipoError error = ERRORNULO;
+    int opcion;
+    bool ejecutar = true;
+    do{
+        system("cls");
+        cout << "==============================================" << endl;
+        cout << " _     ___ ____  ____  _____ ____  ___    _    " << endl;
+        cout << "| |   |_ _| __ )|  _ \\| ____|  _ \\|_ _|  / \\   " << endl;
+        cout << "| |    | ||  _ \\| |_) |  _| | |_) || |  / _ \\  " << endl;
+        cout << "| |___ | || |_) |  _ <| |___|  _ < | | / ___ \\ " << endl;
+        cout << "|_____|___|____/|_| \\_\\_____|_| \\_\\___/_/   \\_\\" << endl;
+        cout << endl;
+        cout << "==============================================" << endl;
+        cout << "1. Registrar autor" << endl;
+        cout << "2. Registrar libro" << endl;
+        cout << "3. Asociar autor a novela" << endl;
+        cout << "4. Listar autores" << endl;
+        cout << "5. Listar libros" << endl;
+        cout << "0. Salir" << endl;
+        cout << "==============================================" << endl;
+        cout << "   >Ingrese una opcion: ";
+        cin >> opcion;
+        switch (opcion){
+            case 1:{
+                // ==================== REQUERIMIENTO 1 ====================
+                system("cls");
+                cout << "==============================================" << endl;
+                cout << "             REGISTRAR AUTORES" << endl;
+                cout << "==============================================" << endl;
+                long int cedula;
+                String nombre, apellido;
+                cout << "   >Ingrese Cedula: ";
+                cin >> cedula;
+                cout << "   >Ingrese Nombre: ";
+                nombre.scan();
+                cout << "   >Ingrese Apellido: ";
+                apellido.scan();
+                Autor* au = new Autor(cedula, nombre, apellido);
+                fachada.registrarAutor(au, error);
+                cout << "==============================================" << endl;
+                imprimirError(error);
+                system("pause");
+            break;
+            }
+            case 2:{
+                // ==================== REQUERIMIENTO 2 ====================
+                system("cls");
+                cout << "==============================================" << endl;
+                cout << "             REGISTRAR LIBROS" << endl;
+                cout << "==============================================" << endl;
+                long int isbn;
+                String titulo, editorial;
+                float precioBase;
+                int tipo;
 
-    // ==================== REQUERIMIENTO 1 ====================
-    cout << "\n=== REQUERIMIENTO 1: REGISTRAR AUTORES ===" << endl;
-    fachada.registrarAutor(new Autor(44444444, "Juan", "Perez"), error);
-    imprimirError(error);
-    fachada.registrarAutor(new Autor(22222222, "Maria", "Lopez"), error);
-    imprimirError(error);
-    fachada.registrarAutor(new Autor(55555555, "Pedro", "Gomez"), error);
-    imprimirError(error);
+                cout << "   >Ingrese ISBN: ";
+                cin >> isbn;
+                cout << "   >Ingrese Titulo: ";
+                titulo.scan();
+                cout << "   >Ingrese Editorial: ";
+                editorial.scan();
+                cout << "   >Ingrese Precio Base: ";
+                cin >> precioBase;
 
-    // ==================== REQUERIMIENTO 2 ====================
-    cout << "\n=== REQUERIMIENTO 2: REGISTRAR LIBROS ===" << endl;
-    fachada.registrarLibro(
-        new Novela(101, "Cuentos Infantiles", "Planeta", 1000, "Infantil"),
-        error);
-    imprimirError(error);
-    fachada.registrarLibro(
-        new Novela(202, "Cuentos de terror", "Planeta", 1200, "Terror"), error);
-    imprimirError(error);
+                cout << endl;
+                cout << "==============================================" << endl;
+                cout << "              TIPO DE LIBRO                   " << endl;
+                cout << "==============================================" << endl;
+                cout << "   1. Novela" << endl;
+                cout << "   2. Texto" << endl;
+                cout << "==============================================" << endl;
+                cout << "   >Ingrese una opcion: ";
+                cin >> tipo;
+                switch(tipo){
+                    case 1:{
+                        String genero;
+                        cout << "   >Ingrese Genero: ";
+                        genero.scan();
+                        Novela * nov = new Novela(isbn, titulo, editorial, precioBase, genero);
+                        fachada.registrarLibro(nov, error);
+                    break;
+                    }
+                    case 2:{
+                        String materia;
+                        int d, m, a;
+                        int escolar;
+                        cout << "   >Ingrese Materia: ";
+                        materia.scan();
+                        cout << "   >Ingrese Fecha de publicacion: " << endl;
+                        cout << "   >Dia: ";
+                        cin >> d;
+                        cout << "   >Mes: ";
+                        cin >> m;
+                        cout << "   >Anio: ";
+                        cin >> a;
+                        Fecha f(d, m, a);
+                        cout << "   >Es escolar: " << endl;
+                        cout << "   1. Si" << endl;
+                        cout << "   2. No" << endl;
+                        cout << "   >Ingrese una opcion: ";
+                        cin >> escolar;
+                        if(escolar == 1){
+                            int anio;
+                            cout << "   >Ingrese Anio de escuela: ";
+                            cin >> anio;
+                            Escolar * es = new Escolar(isbn, titulo, editorial, precioBase, materia, f, anio);
+                            fachada.registrarLibro(es, error);
+                        }else{
+                            Texto * tex = new Texto(isbn, titulo, editorial, precioBase, materia, f);
+                            fachada.registrarLibro(tex, error);
+                        }
+                    break;
+                    }
+                    default:
+                        cout << "   ERROR: no ha ingresado correctamente el tipo de libro";
+                    break;
+                }
+                cout << "==============================================" << endl;
+                imprimirError(error);
+                system("pause");
+            break;
+            }
 
-    Fecha fechaTexto(15, 6, 2025);
-    fachada.registrarLibro(new Texto(303, "Ciencia para todos", "Santillana",
-                                     900, "Ciencias", fechaTexto),
-                           error);
-    imprimirError(error);
+        }
+    }while(ejecutar);
 
-    Fecha fechaEscolar(10, 3, 2025);
-    fachada.registrarLibro(new Escolar(404, "Ciencias escolares", "Santillana",
-                                       800, "Ciencias", fechaEscolar, 2),
-                           error);
-    imprimirError(error);
+
+    /*
 
     // ==================== REQUERIMIENTO 3 ====================
     cout << "\n=== REQUERIMIENTO 3: ASOCIAR AUTOR A NOVELA ===" << endl;
@@ -377,4 +325,5 @@ int main() {
     } else {
         imprimirDetalleLibro(masVendido);
     }
+   */
 }
