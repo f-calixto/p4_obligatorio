@@ -11,7 +11,9 @@ enum TipoError {  // el numero entre parentesis representa en que
     NOESNOVELA,       // el libro no es una novela (3)
     LIBROSFRASE,      // no existen libros con la frase ingresada (4)
     AUTORESVACIO,     // no hay autores en el diccionario de autores (6)
-    EDITORIALSINLIBROS
+    EDITORIALSINLIBROS,
+    ERRORINGRESO,
+    FECHAINCORRECTA
 };
 
 void ImprimirMensaje(TipoError error);

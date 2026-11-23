@@ -7,6 +7,7 @@
 #include "Texto.h"
 using namespace std;
 
+//PROCEDIMIENTOS CAPA GRAFICA
 void imprimirError(TipoError error) {
     if (error != ERRORNULO) {
         ImprimirMensaje(error);
@@ -55,7 +56,7 @@ void imprimirDetalleLibro(Libro* libro) {
             cout << endl;
 
             Autor* autor = novela->getAutor();
-            if (autor != nullptr) {
+            if (autor != NULL) {
                 cout << "Autor: " << autor->getCedula() << " - ";
                 autor->getNombre().print();
                 cout << " ";
@@ -89,6 +90,8 @@ void imprimirDetalleLibro(Libro* libro) {
         }
     }
 }
+
+//PROGRAMA MAIN
 
 int main() {
     Fachada fachada;
@@ -132,7 +135,10 @@ int main() {
                 Autor* au = new Autor(cedula, nombre, apellido);
                 fachada.registrarAutor(au, error);
                 cout << "==============================================" << endl;
-                imprimirError(error);
+                if(error == ERRORNULO)
+                    cout << "Se ha ingresado el autor correctamente" << endl;
+                else
+                    imprimirError(error);
                 system("pause");
             break;
             }
@@ -188,142 +194,259 @@ int main() {
                         cout << "   >Anio: ";
                         cin >> a;
                         Fecha f(d, m, a);
-                        cout << "   >Es escolar: " << endl;
-                        cout << "   1. Si" << endl;
-                        cout << "   2. No" << endl;
-                        cout << "   >Ingrese una opcion: ";
-                        cin >> escolar;
-                        if(escolar == 1){
-                            int anio;
-                            cout << "   >Ingrese Anio de escuela: ";
-                            cin >> anio;
-                            Escolar * es = new Escolar(isbn, titulo, editorial, precioBase, materia, f, anio);
-                            fachada.registrarLibro(es, error);
-                        }else{
-                            Texto * tex = new Texto(isbn, titulo, editorial, precioBase, materia, f);
-                            fachada.registrarLibro(tex, error);
-                        }
+                        if(f.esValida()){
+                            cout << "   >Es escolar: " << endl;
+                            cout << "   1. Si" << endl;
+                            cout << "   2. No" << endl;
+                            cout << "   >Ingrese una opcion: ";
+                            cin >> escolar;
+                            if(escolar >= 1 && escolar <= 2){
+                                if(escolar == 1){
+                                    int anio;
+                                    cout << "   >Ingrese Anio de escuela (1-6): ";
+                                    cin >> anio;
+                                    if(anio >= 1 && anio <= 6){
+                                        Escolar * es = new Escolar(isbn, titulo, editorial, precioBase, materia, f, anio);
+                                        fachada.registrarLibro(es, error);
+                                    }else
+                                        error = ERRORINGRESO;
+                                }else{
+                                    Texto * tex = new Texto(isbn, titulo, editorial, precioBase, materia, f);
+                                    fachada.registrarLibro(tex, error);
+                                }
+                            } else{
+                                error = ERRORINGRESO;
+                            }
+                        }else
+                            error = FECHAINCORRECTA;
                     break;
                     }
                     default:
-                        cout << "   ERROR: no ha ingresado correctamente el tipo de libro";
+                        error = ERRORINGRESO;
                     break;
                 }
                 cout << "==============================================" << endl;
-                imprimirError(error);
+                if(error == ERRORNULO){
+                    cout << "Se ha ingresado el libro correctamente" << endl;;
+                }else{
+                    imprimirError(error);
+                }
                 system("pause");
             break;
             }
+            case 3:{
+                // ==================== REQUERIMIENTO 3 ====================
+                system("cls");
+                cout << "==============================================" << endl;
+                cout << "           ASOCIAR AUTOR A NOVELA" << endl;
+                cout << "==============================================" << endl;
+                long int isbn, cedula;
 
+                cout << "   >Ingrese ISBN: ";
+                cin >> isbn;
+                cout << "   >Ingrese Cedula del autor: ";
+                cin >> cedula;
+                fachada.asociarAutorNovela(cedula, isbn, error);
+                cout << "==============================================" << endl;
+                if (error == ERRORNULO) {
+                    cout << "Autor asociado a la novela." << endl;
+                } else {
+                    imprimirError(error);
+                }
+                system("pause");
+            break;
+            }
+            case 4:{
+                // ==================== REQUERIMIENTO 6 ====================
+                system("cls");
+                cout << "==============================================" << endl;
+                cout << "           Listar Autores" << endl;
+                cout << "==============================================" << endl;
+                Iterador autores;
+                fachada.listarAutores(error, autores);
+                if (error != ERRORNULO) {
+                    imprimirError(error);
+                } else {
+                    while (autores.hayMasObjetos()) {
+                        Autor* autor = (Autor*)autores.proximoObjeto();
+                        cout << autor->getCedula() << " - ";
+                        autor->getNombre().print();
+                        cout << " ";
+                        autor->getApellido().print();
+                        cout << endl;
+                    }
+                }
+                cout << "==============================================" << endl;
+                system("pause");
+            break;
+            }
+            case 5:{
+                bool listarlibrosmenu = true;
+                do{
+                    int opc;
+                    system("cls");
+                    cout << "==============================================" << endl;
+                    cout << "               Listar Libros" << endl;
+                    cout << "==============================================" << endl;
+                    cout << "1. Listar libros por frase" << endl;
+                    cout << "2. Listar libro por ISBN" << endl;
+                    cout << "3. Registrar venta por ISBN" << endl;
+                    cout << "4. Recaudacion por editorial" << endl;
+                    cout << "5. Unidades vendidas por tipo" << endl;
+                    cout << "6. Libro mas vendido por editorial" << endl;
+                    cout << "0. Salir" << endl;
+                    cout << "==============================================" << endl;
+                    cout << "   >Ingrese una opcion: ";
+                    cin >> opc;
+                    switch(opc){
+                        case 1:{
+                            // ==================== REQUERIMIENTO 4 ====================
+                            system("cls");
+                            cout << "==============================================" << endl;
+                            cout << "         Listar libros por frase" << endl;
+                            cout << "==============================================" << endl;
+                            String frase;
+                            Iterador librosPorFrase;
+                            cout << "   >Ingrese Frase: ";
+                            frase.scan();
+                            cout << "==============================================" << endl;
+                            fachada.listarPorFrase(frase, error, librosPorFrase);
+                            if (error != ERRORNULO) {
+                                imprimirError(error);
+                            } else {
+                                while (librosPorFrase.hayMasObjetos()) {
+                                    Libro* libro = (Libro*)librosPorFrase.proximoObjeto();
+                                    imprimirLibroBasico(libro);
+                                }
+                            }
+                            cout << "==============================================" << endl;
+                            system("pause");
+                        break;
+                        }
+                        case 2:{
+                            // ==================== REQUERIMIENTO 5 ====================
+                            system("cls");
+                            cout << "==============================================" << endl;
+                            cout << "         Listar libros por ISBN" << endl;
+                            cout << "==============================================" << endl;
+                            long int isbn;
+                            Libro * libro = NULL;
+                            cout << "   >Ingrese ISBN: ";
+                            cin >> isbn;
+                            cout << "==============================================" << endl;
+                            fachada.listarLibro(isbn, error, libro);
+                            if (error != ERRORNULO) {
+                                imprimirError(error);
+                            } else {
+                                imprimirDetalleLibro(libro);
+                            }
+                            cout << "==============================================" << endl;
+                            system("pause");
+                        break;
+                        }
+                        case 3:{
+                            // ==================== REQUERIMIENTO 7 ====================
+                            system("cls");
+                            cout << "==============================================" << endl;
+                            cout << "         Registrar venta por ISBN" << endl;
+                            cout << "==============================================" << endl;
+                            long int isbn;
+                            cout << "   >Ingrese ISBN: ";
+                            cin >> isbn;
+                            cout << "==============================================" << endl;
+                            float importe;
+                            fachada.registrarVenta(isbn, error, importe);
+                            if (error != ERRORNULO) {
+                                imprimirError(error);
+                            } else {
+                                cout << "Importe de la venta del libro: " << importe << endl;
+                            }
+                            cout << "==============================================" << endl;
+                            system("pause");
+                        }
+                        break;
+                        case 4:{
+                            // ==================== REQUERIMIENTO 8 ====================
+                            system("cls");
+                            cout << "==============================================" << endl;
+                            cout << "         Recaudacion por editorial" << endl;
+                            cout << "==============================================" << endl;
+                            String frase;
+                            cout << "   >Ingrese editorial: ";
+                            frase.scan();
+                            cout << "==============================================" << endl;
+                            cout << "Recaudacion: "<< fachada.recaudacionEditorial(frase) << endl;
+                            cout << "==============================================" << endl;
+                            system("pause");
+                        break;
+                        }
+                        case 5:{
+                            // ==================== REQUERIMIENTO 9 ====================
+                            system("cls");
+                            cout << "==============================================" << endl;
+                            cout << "         Unidades vendidas por tipo" << endl;
+                            cout << "==============================================" << endl;
+                            int novelas = 0;
+                            int textos = 0;
+                            int escolares = 0;
+                            fachada.unidadesVendidasPorTipo(850, novelas, textos, escolares);
+                            cout << "==============================================" << endl;
+                            cout << "Novelas: " << novelas << endl;
+                            cout << "Textos comunes: " << textos << endl;
+                            cout << "Textos escolares: " << escolares << endl;
+                            cout << "==============================================" << endl;
+                            system("pause");
+                        break;
+                        }
+                        case 6:{
+                            // ==================== REQUERIMIENTO 10 ====================
+                            system("cls");
+                            cout << "==============================================" << endl;
+                            cout << "         Libro mas vendido por editorial" << endl;
+                            cout << "==============================================" << endl;
+                            String frase;
+                            Libro* masVendido = NULL;
+                            cout << "   >Ingrese editorial: ";
+                            frase.scan();
+                            fachada.listarMasVendidoEditorial(frase, error, masVendido);
+                            cout << "==============================================" << endl;
+                            if (error != ERRORNULO) {
+                                imprimirError(error);
+                            } else {
+                                imprimirDetalleLibro(masVendido);
+                            }
+                            cout << "==============================================" << endl;
+                            system("pause");
+                        break;
+                        }
+                        case 0:{
+                            listarlibrosmenu = false;
+                        break;
+                        }
+                        default:{
+                            error = ERRORINGRESO;
+                            cout << "==============================================" << endl;
+                            imprimirError(error);
+                            system("pause");
+                        break;
+                        }
+                    }
+                }while(listarlibrosmenu);
+
+            break;
+            }
+            case 0:{
+                ejecutar = false;
+            break;
+            }
+            default:{
+                error = ERRORINGRESO;
+                cout << "==============================================" << endl;
+                imprimirError(error);
+                system("pause");
+                break;
+            }
         }
     }while(ejecutar);
 
-
-    /*
-
-    // ==================== REQUERIMIENTO 3 ====================
-    cout << "\n=== REQUERIMIENTO 3: ASOCIAR AUTOR A NOVELA ===" << endl;
-    fachada.asociarAutorNovela(44444444, 101, error);
-    if (error == ERRORNULO) {
-        cout << "Autor asociado a la novela 101." << endl;
-    } else {
-        imprimirError(error);
-    }
-
-    // ==================== REQUERIMIENTO 4 ====================
-    cout << "\n=== REQUERIMIENTO 4: LISTAR LIBROS POR FRASE ===" << endl;
-    Iterador librosPorFrase;
-    fachada.listarPorFrase("C", error, librosPorFrase);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        while (librosPorFrase.hayMasObjetos()) {
-            Libro* libro = (Libro*)librosPorFrase.proximoObjeto();
-            imprimirLibroBasico(libro);
-        }
-    }
-
-    // ==================== REQUERIMIENTO 5 ====================
-    cout << "\n=== REQUERIMIENTO 5: LISTAR LIBRO POR ISBN ===" << endl;
-    Libro* libro = nullptr;
-    fachada.listarLibro(101, error, libro);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        imprimirDetalleLibro(libro);
-    }
-
-    // ==================== REQUERIMIENTO 6 ====================
-    cout << "\n=== REQUERIMIENTO 6: LISTAR AUTORES ===" << endl;
-    Iterador autores;
-    fachada.listarAutores(error, autores);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        while (autores.hayMasObjetos()) {
-            Autor* autor = (Autor*)autores.proximoObjeto();
-            cout << autor->getCedula() << " - ";
-            autor->getNombre().print();
-            cout << " ";
-            autor->getApellido().print();
-            cout << endl;
-        }
-    }
-
-    // ==================== REQUERIMIENTO 7 ====================
-    cout << "\n=== REQUERIMIENTO 7: REGISTRAR VENTAS ===" << endl;
-    float importe = fachada.registrarVenta(101, error);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        cout << "Importe de la venta del libro 101: " << importe << endl;
-    }
-
-    importe = fachada.registrarVenta(101, error);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        cout << "Importe de la venta del libro 101: " << importe << endl;
-    }
-
-    importe = fachada.registrarVenta(202, error);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        cout << "Importe de la venta del libro 202: " << importe << endl;
-    }
-
-    importe = fachada.registrarVenta(303, error);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        cout << "Importe de la venta del libro 303: " << importe << endl;
-    }
-
-    // ==================== REQUERIMIENTO 8 ====================
-    cout << "\n=== REQUERIMIENTO 8: RECAUDACION POR EDITORIAL ===" << endl;
-    cout << "Recaudacion de Planeta: "
-         << fachada.recaudacionEditorial("Planeta") << endl;
-
-    // ==================== REQUERIMIENTO 9 ====================
-    cout << "\n=== REQUERIMIENTO 9: UNIDADES VENDIDAS POR TIPO ===" << endl;
-    int novelas = 0;
-    int textos = 0;
-    int escolares = 0;
-    fachada.unidadesVendidasPorTipo(850, novelas, textos, escolares);
-    cout << "Novelas: " << novelas << endl;
-    cout << "Textos comunes: " << textos << endl;
-    cout << "Textos escolares: " << escolares << endl;
-
-    // ==================== REQUERIMIENTO 10 ====================
-    cout << "\n=== REQUERIMIENTO 10: LIBRO MAS VENDIDO POR EDITORIAL ==="
-         << endl;
-    Libro* masVendido = nullptr;
-    fachada.listarMasVendidoEditorial("Planeta", error, masVendido);
-    if (error != ERRORNULO) {
-        imprimirError(error);
-    } else {
-        imprimirDetalleLibro(masVendido);
-    }
-   */
 }

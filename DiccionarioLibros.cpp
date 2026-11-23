@@ -3,13 +3,13 @@
 //CONSTRUCTOR NODO
 DiccionarioLibros::Nodo::Nodo(Libro* libro){
     info = libro;
-    sig = nullptr;
+    sig = NULL;
 }
 
 //CONSTRUCTOR DICCIONARIO
 DiccionarioLibros::DiccionarioLibros(){
     for(int i = 0; i < B; i++){
-        tabla[i] = nullptr;
+        tabla[i] = NULL;
     }
 }
 
@@ -28,15 +28,15 @@ void DiccionarioLibros::Insert(Libro* libro){
 
 bool DiccionarioLibros::Member(long int isbn){
     Nodo* aux = tabla[H(isbn)];
-    while(aux != nullptr && aux->info->getIsbn() != isbn){
+    while(aux != NULL && aux->info->getIsbn() != isbn){
         aux = aux->sig;
     }
-    return aux != nullptr;
+    return aux != NULL;
 }
 
 Libro* DiccionarioLibros::Find(long int isbn){
     Nodo* aux = tabla[H(isbn)];
-    while(aux != nullptr && aux->info->getIsbn() != isbn){
+    while(aux != NULL && aux->info->getIsbn() != isbn){
         aux = aux->sig;
     }
     return aux->info;
@@ -44,7 +44,7 @@ Libro* DiccionarioLibros::Find(long int isbn){
 
 bool DiccionarioLibros::estaVacio(){
     int i=0;
-    while(i < B && tabla[i] == nullptr){
+    while(i < B && tabla[i] == NULL){
         i++;
     }
     return i == B;
@@ -52,10 +52,16 @@ bool DiccionarioLibros::estaVacio(){
 
 //METODOS
 void DiccionarioLibros::buscarPorFrase(String frase, Iterador &iter){
+    frase.aMinuscula();
+
     for(int i = 0; i < B; i++){
         Nodo* actual = tabla[i];
-        while(actual != nullptr){
-            if(actual->info->getTitulo().comienzaCon(frase)){
+
+        while(actual != NULL){
+            String titulo = actual->info->getTitulo();
+            titulo.aMinuscula();
+
+            if(titulo.comienzaCon(frase)){
                 iter.insertar(actual->info);
             }
             actual = actual->sig;
@@ -67,7 +73,7 @@ float DiccionarioLibros::calcularRecaudacion(String editorial){
     float total = 0;
     for(int i = 0; i < B; i++){
         Nodo* aux = tabla[i];
-        while(aux != nullptr){
+        while(aux != NULL){
             if(aux->info->getEditorial() == editorial){
                 total += (aux->info->calcularPrecioVenta()) * (aux->info->getUnidadesVendidas());
             }
@@ -83,7 +89,7 @@ void DiccionarioLibros::calcularUnidadesVendidas(float precio, int &novelas, int
     escolares = 0;
     for(int i = 0; i < B; i++){
         Nodo* aux = tabla[i];
-        while(aux != nullptr){
+        while(aux != NULL){
             Libro* libro = aux->info;
             if(libro->getPrecioBase() > precio){
                 switch(libro->obtenerTipo()){
@@ -106,12 +112,12 @@ void DiccionarioLibros::calcularUnidadesVendidas(float precio, int &novelas, int
 }
 
 Libro* DiccionarioLibros::libroMasVendidoEditorial(String editorial){
-    Libro* masVendido = nullptr;
+    Libro* masVendido = NULL;
     for(int i = 0; i < B; i++){
         Nodo* aux = tabla[i];
-        while(aux != nullptr){
+        while(aux != NULL){
             if(aux->info->getEditorial() == editorial){
-                if(masVendido == nullptr || aux->info->getUnidadesVendidas() > masVendido->getUnidadesVendidas()){
+                if(masVendido == NULL || aux->info->getUnidadesVendidas() > masVendido->getUnidadesVendidas()){
                    masVendido = aux->info;
                 }
             }
@@ -126,7 +132,7 @@ Libro* DiccionarioLibros::libroMasVendidoEditorial(String editorial){
 DiccionarioLibros::~DiccionarioLibros(){
     for(int i = 0; i < B; i++){
         Nodo* aux = tabla[i];
-        while(aux != nullptr){
+        while(aux != NULL){
             Nodo* siguiente = aux->sig;
             delete aux->info; //BORRA ADEMAS EL LIBRO
             delete aux;

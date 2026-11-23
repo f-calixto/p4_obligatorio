@@ -3,7 +3,7 @@
 // CONSTRUCTOR
 Novela::Novela(long int i, String t, String e, float p, String g)
     : Libro(i, t, e, p), genero(g) {
-    autor = nullptr;
+    autor = NULL;
 }
 
 // GETTERS Y SET

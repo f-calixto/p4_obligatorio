@@ -29,7 +29,7 @@ void Fachada::asociarAutorNovela(long int ci, long int isbn, TipoError& error) {
         error = LIBRONOEXISTE;
     } else{
         Autor* autor = autores.Find(ci);
-        if (autor == nullptr) {
+        if (autor == NULL) {
             error = AUTORNOEXISTE;
         } else{
             Libro* libro = libros.Find(isbn);
@@ -53,7 +53,7 @@ void Fachada::listarPorFrase(String frase, TipoError& error, Iterador& iter) {
 
 void Fachada::listarLibro(long int isbn, TipoError& error, Libro*& libro) {
     error = ERRORNULO;
-    libro = nullptr;
+    libro = NULL;
     if (!libros.Member(isbn)) {
         error = LIBRONOEXISTE;
     } else{
@@ -94,7 +94,7 @@ void Fachada::listarMasVendidoEditorial(String editorial, TipoError& error, Libr
     error = ERRORNULO;
     libro = libros.libroMasVendidoEditorial(editorial);
 
-    if (libro == nullptr) {
+    if (libro == NULL) {
         error = EDITORIALSINLIBROS;
     }
 }

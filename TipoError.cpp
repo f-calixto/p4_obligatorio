@@ -39,5 +39,13 @@ void ImprimirMensaje(TipoError error) {
             cout << "No hay libros de esa editorial.";
             break;
         }
+        case ERRORINGRESO: {
+            cout << "Ha ingresado un valor incorrecto";
+            break;
+        }
+        case FECHAINCORRECTA: {
+            cout << "Ha ingresado una fecha no valida";
+            break;
+        }
     }
 }
