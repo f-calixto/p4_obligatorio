@@ -389,7 +389,10 @@ int main() {
                             int novelas = 0;
                             int textos = 0;
                             int escolares = 0;
-                            fachada.unidadesVendidasPorTipo(850, novelas, textos, escolares);
+                            float precioBase;
+                            cout << "   >Ingrese precio base:" ;
+                            cin >> precioBase;
+                            fachada.unidadesVendidasPorTipo(precioBase, novelas, textos, escolares);
                             cout << "==============================================" << endl;
                             cout << "Novelas: " << novelas << endl;
                             cout << "Textos comunes: " << textos << endl;
