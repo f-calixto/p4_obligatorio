@@ -137,8 +137,10 @@ int main() {
                 cout << "==============================================" << endl;
                 if(error == ERRORNULO)
                     cout << "Se ha ingresado el autor correctamente" << endl;
-                else
+                else{
                     imprimirError(error);
+                    delete au;
+                }
                 system("pause");
             break;
             }
@@ -171,13 +173,14 @@ int main() {
                 cout << "==============================================" << endl;
                 cout << "   >Ingrese una opcion: ";
                 cin >> tipo;
+                Libro* nuevo = NULL;
                 switch(tipo){
                     case 1:{
                         String genero;
                         cout << "   >Ingrese Genero: ";
                         genero.scan();
-                        Novela * nov = new Novela(isbn, titulo, editorial, precioBase, genero);
-                        fachada.registrarLibro(nov, error);
+                        nuevo = new Novela(isbn, titulo, editorial, precioBase, genero);
+                        fachada.registrarLibro(nuevo, error);
                     break;
                     }
                     case 2:{
@@ -206,13 +209,13 @@ int main() {
                                     cout << "   >Ingrese Anio de escuela (1-6): ";
                                     cin >> anio;
                                     if(anio >= 1 && anio <= 6){
-                                        Escolar * es = new Escolar(isbn, titulo, editorial, precioBase, materia, f, anio);
-                                        fachada.registrarLibro(es, error);
+                                        nuevo = new Escolar(isbn, titulo, editorial, precioBase, materia, f, anio);
+                                        fachada.registrarLibro(nuevo, error);
                                     }else
                                         error = ERRORINGRESO;
                                 }else{
-                                    Texto * tex = new Texto(isbn, titulo, editorial, precioBase, materia, f);
-                                    fachada.registrarLibro(tex, error);
+                                    nuevo = new Texto(isbn, titulo, editorial, precioBase, materia, f);
+                                    fachada.registrarLibro(nuevo, error);
                                 }
                             } else{
                                 error = ERRORINGRESO;
@@ -230,6 +233,7 @@ int main() {
                     cout << "Se ha ingresado el libro correctamente" << endl;;
                 }else{
                     imprimirError(error);
+                    delete nuevo;
                 }
                 system("pause");
             break;
@@ -440,6 +444,7 @@ int main() {
             }
             case 0:{
                 ejecutar = false;
+
             break;
             }
             default:{
@@ -452,4 +457,6 @@ int main() {
         }
     }while(ejecutar);
 
-}
+    }
+
+
